@@ -1,0 +1,5 @@
+export const SET_GAME_COMPLETED = 'SET_GAME_COMPLETED';
+export const ADD_SYMBOL = 'ADD_SYMBOL';
+export const SWITCH_TURN = 'SWITCH_TURN';
+export const SELECT_PLAYER_X = 'SELECT_PLAYER_X';
+export const SELECT_PLAYER_0 = 'SELECT_PLAYER_0';
