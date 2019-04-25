@@ -1,4 +1,5 @@
-import { SET_GAME_COMPLETED, ADD_SYMBOL, SWITCH_TURN, SELECT_PLAYER_X, SELECT_PLAYER_0 } from '../actions/actionTypes';
+import { SET_GAME_COMPLETED, ADD_SYMBOL, SWITCH_TURN, SELECT_PLAYER_X, 
+    SELECT_PLAYER_0, ADD_SCORE } from '../actions/actionTypes';
 import initialSquareData from './initialSquareData';
 import initialPlayerData from './initialPlayerData';
 
@@ -38,6 +39,11 @@ const reducer = (state = initialState, action) => {
                 ...state,
                 players: action.player,
                 selectedPlayer0: action.id,
+            };
+            case ADD_SCORE:
+            return {
+                ...state,
+                players: action.score,
             };
         default:
             return state;

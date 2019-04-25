@@ -1,4 +1,5 @@
-import { SET_GAME_COMPLETED, ADD_SYMBOL, SWITCH_TURN, SELECT_PLAYER_X, SELECT_PLAYER_0  } from './actionTypes';
+import { SET_GAME_COMPLETED, ADD_SYMBOL, SWITCH_TURN, SELECT_PLAYER_X, 
+    SELECT_PLAYER_0, ADD_SCORE } from './actionTypes';
 
 export const setGameCompleted = () => {
     return {
@@ -33,5 +34,12 @@ export const selectPlayer0 = (player, id) => {
         type: SELECT_PLAYER_0,
         player: player,
         id: id,
+    };
+};
+
+export const addScore = (score) => {
+    return {
+        type: ADD_SCORE,
+        score: score,
     };
 };

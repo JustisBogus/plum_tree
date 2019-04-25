@@ -3,3 +3,4 @@ export const ADD_SYMBOL = 'ADD_SYMBOL';
 export const SWITCH_TURN = 'SWITCH_TURN';
 export const SELECT_PLAYER_X = 'SELECT_PLAYER_X';
 export const SELECT_PLAYER_0 = 'SELECT_PLAYER_0';
+export const ADD_SCORE = 'ADD_SCORE';

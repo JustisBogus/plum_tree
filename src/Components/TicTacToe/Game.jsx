@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import Header from '../../Components/Header';
 import { connect } from 'react-redux';
-import { setGameCompleted, addSymbol, switchTurn } from '../../store/actions/game';
+import { setGameCompleted, addSymbol, switchTurn, addScore } from '../../store/actions/game';
 import Square from '../../Components/TicTacToe/Square/Square';
 import './Game.scss';
 import { gameFunction } from '../../game/gameFunction';
@@ -22,10 +22,12 @@ class Game extends Component {
 
     handleSquareClick = (id) => {
         let square = [...this.props.squares]
-        let game = gameFunction(id, square, this.props.playerTurn);
+        let game = gameFunction(id, square, this.props.playerTurn, this.props.players, 
+            this.props.selectedPlayerX, this.props.selectedPlayer0);
         this.props.onAddSymbol(game.squares);
         this.props.onSwitchTurn(game.turn);
-        console.log(game.winner);
+        this.props.onAddScore(game.winner);
+        console.log(game.completed);
     }
    
   render() {
@@ -59,6 +61,9 @@ const mapStateToProps = state => {
         gameCompleted: state.game.gameCompleted,
         squares: state.game.squares,
         playerTurn: state.game.playerTurn,
+        players: state.game.players,
+        selectedPlayerX: state.game.selectedPlayerX,
+        selectedPlayer0: state.game.selectedPlayer0,
     };
 };
 
@@ -67,6 +72,7 @@ const mapDispatchToProps = dispatch => {
         onSetGameCompleted: () => dispatch(setGameCompleted()),
         onAddSymbol: (symbol) => dispatch(addSymbol(symbol)),
         onSwitchTurn: (playerTurn) => dispatch(switchTurn(playerTurn)),
+        onAddScore: (score) => dispatch(addScore(score)),
     };
 };
 

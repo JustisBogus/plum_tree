@@ -1,4 +1,4 @@
-export const gameFunction = (id, squares, playerTurn) => {
+export const gameFunction = (id, squares, playerTurn, players, selectedPlayerX, selectedPlayer0) => {
     let square = {...squares[id]};
     if(square.symbol === ''){
     square.symbol = playerTurn;
@@ -10,6 +10,7 @@ export const gameFunction = (id, squares, playerTurn) => {
     }
     }
     let gameCompleted="";
+    let selectedPlayers = [...players];
     let winCombination =
     [
         [0, 1, 2],
@@ -26,15 +27,32 @@ export const gameFunction = (id, squares, playerTurn) => {
         const [a, b, c] = winCombination[i]
         if(squares[a].symbol === 'X' && squares[a].symbol === squares[b].symbol && squares[a].symbol === squares[c].symbol) {
             gameCompleted = 'X wins';
+            let winPlayer = {...selectedPlayers[selectedPlayerX]};
+            winPlayer.score = winPlayer.score + 100;
+            winPlayer.wins = winPlayer.wins + 1;
+            selectedPlayers[selectedPlayerX] = winPlayer;
+
+            let losePlayer = {...selectedPlayers[selectedPlayer0]};
+            losePlayer.loses = losePlayer.loses + 1;
+            selectedPlayers[selectedPlayer0] = losePlayer;
         }
         if(squares[a].symbol === '0' && squares[a].symbol === squares[b].symbol && squares[a].symbol === squares[c].symbol) {
             gameCompleted = '0 wins';
+            let winPlayer = {...selectedPlayers[selectedPlayer0]};
+            winPlayer.score = winPlayer.score + 100;
+            winPlayer.wins = winPlayer.wins + 1;
+            selectedPlayers[selectedPlayer0] = winPlayer;
+
+            let losePlayer = {...selectedPlayers[selectedPlayerX]};
+            losePlayer.loses = losePlayer.loses + 1;
+            selectedPlayers[selectedPlayerX] = losePlayer;
         }
     }
     
     return ({
                 squares: squares,
                 turn: playerTurn,
-                winner: gameCompleted,
+                completed: gameCompleted,
+                winner: selectedPlayers,
             });
 }
