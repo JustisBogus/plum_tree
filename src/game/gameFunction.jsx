@@ -27,7 +27,6 @@ export const gameFunction = (id, squares, playerTurn, players, selectedPlayerX, 
     for(let i = 0; i < winCombination.length; i++) {
         const [a, b, c] = winCombination[i]
         if(squares[a].symbol === 'X' && squares[a].symbol === squares[b].symbol && squares[a].symbol === squares[c].symbol) {
-            gameCompleted = 'X wins';
             let winPlayer = {...selectedPlayers[selectedPlayerX]};
             winPlayer.score = winPlayer.score + 100;
             winPlayer.wins = winPlayer.wins + 1;
@@ -40,7 +39,6 @@ export const gameFunction = (id, squares, playerTurn, players, selectedPlayerX, 
             gameCompleted = true;
         }
         if(squares[a].symbol === '0' && squares[a].symbol === squares[b].symbol && squares[a].symbol === squares[c].symbol) {
-            gameCompleted = '0 wins';
             let winPlayer = {...selectedPlayers[selectedPlayer0]};
             winPlayer.score = winPlayer.score + 100;
             winPlayer.wins = winPlayer.wins + 1;
@@ -53,7 +51,9 @@ export const gameFunction = (id, squares, playerTurn, players, selectedPlayerX, 
             gameCompleted = true;
         }
     }
-    
+        if (squares.every(element => element.symbol !== '')) {
+            gameCompleted = true; 
+        }
     return ({
                 squares: squares,
                 turn: playerTurn,
