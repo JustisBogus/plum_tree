@@ -64,7 +64,6 @@ const reducer = (state = initialState, action) => {
             case ADD_PLAYER:
             return {
                 ...state,
-                //players: [action.player].concat(state.players),
                 players: state.players.concat(action.player),
             };
             case PLAYER_SEARCH:
