@@ -10,7 +10,6 @@
     width: 31%;
     min-width: 400px;
     border-right: 2px solid #50bfe6;
-    height:100vh;
     overflow-y: scroll
 }
 
@@ -20,9 +19,8 @@
     width: 310px
 }
 
-.player-container-x, .player-container-0 {
+.game-playerContainer {
     width: 27%;
     border-right: 2px solid #50bfe6;
-    height:100vh;
     overflow-y: scroll
 }

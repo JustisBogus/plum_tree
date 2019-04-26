@@ -26,6 +26,7 @@ const reducer = (state = initialState, action) => {
                 ...state,
                 gameCompleted: false,
                 squares: initialSquareData,
+                playerTurn: 'X',
             };
             case ADD_SYMBOL:
             return {

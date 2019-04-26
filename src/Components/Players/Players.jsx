@@ -1,9 +1,8 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import Player from './Player/Player';
-import { selectPlayerX, selectPlayer0, playerSearch } from '../../store/actions/game';
+import { selectPlayerX, selectPlayer0} from '../../store/actions/game';
 import './Players.scss';
-import Input from '../Inputs/Input';
 
 class Players extends Component {
     constructor (props) {
@@ -38,12 +37,7 @@ togglePlayerSelected0 = (id) => {
     players[id] = player;
     this.props.onSelectPlayer0(players, id);
 }
-
-handlePlayerSearchInput = (text) => {
-    this.props.onPlayerSearch(text);
-}
-
-   
+  
   render() {
 
     let filteredPlayers = this.props.players.filter(
@@ -56,10 +50,6 @@ handlePlayerSearchInput = (text) => {
             <React.Fragment>
         <div className="players-wrap">
         <div className="players-title">{this.props.symbol} player</div>
-        <Input 
-        playerSearch={this.props.playerSearch}
-        handlePlayerSearchInput={this.handlePlayerSearchInput}
-        />
         {filteredPlayers.map(player => {
                             return <Player 
                                 key={player.id}
@@ -90,7 +80,6 @@ const mapDispatchToProps = dispatch => {
     return {
         onSelectPlayerX: (player, id) => dispatch(selectPlayerX(player, id)),
         onSelectPlayer0: (player, id) => dispatch(selectPlayer0(player, id)),
-        onPlayerSearch: (search) => dispatch(playerSearch(search)),
     };
 };
 
