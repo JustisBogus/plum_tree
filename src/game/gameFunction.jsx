@@ -1,4 +1,5 @@
 export const gameFunction = (id, squares, playerTurn, players, selectedPlayerX, selectedPlayer0) => {
+    if(selectedPlayerX !== '' && selectedPlayer0 !== '' && selectedPlayerX !== selectedPlayer0) {
     let square = {...squares[id]};
     if(square.symbol === ''){
     square.symbol = playerTurn;
@@ -9,7 +10,7 @@ export const gameFunction = (id, squares, playerTurn, players, selectedPlayerX, 
         playerTurn = "X"
     }
     }
-    let gameCompleted="";
+    let gameCompleted=false;
     let selectedPlayers = [...players];
     let winCombination =
     [
@@ -35,6 +36,8 @@ export const gameFunction = (id, squares, playerTurn, players, selectedPlayerX, 
             let losePlayer = {...selectedPlayers[selectedPlayer0]};
             losePlayer.loses = losePlayer.loses + 1;
             selectedPlayers[selectedPlayer0] = losePlayer;
+
+            gameCompleted = true;
         }
         if(squares[a].symbol === '0' && squares[a].symbol === squares[b].symbol && squares[a].symbol === squares[c].symbol) {
             gameCompleted = '0 wins';
@@ -46,6 +49,8 @@ export const gameFunction = (id, squares, playerTurn, players, selectedPlayerX, 
             let losePlayer = {...selectedPlayers[selectedPlayerX]};
             losePlayer.loses = losePlayer.loses + 1;
             selectedPlayers[selectedPlayerX] = losePlayer;
+
+            gameCompleted = true;
         }
     }
     
@@ -55,4 +60,5 @@ export const gameFunction = (id, squares, playerTurn, players, selectedPlayerX, 
                 completed: gameCompleted,
                 winner: selectedPlayers,
             });
+        }
 }

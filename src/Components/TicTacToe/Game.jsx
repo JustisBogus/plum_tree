@@ -1,11 +1,13 @@
 import React, { Component } from 'react';
-import Header from '../../Components/Header';
+import Header from '../Header';
 import { connect } from 'react-redux';
-import { setGameCompleted, addSymbol, switchTurn, addScore } from '../../store/actions/game';
-import Square from '../../Components/TicTacToe/Square/Square';
+import { setGameCompleted, addSymbol, switchTurn, 
+    addScore, resetGame, addPlayerName, addPlayer } from '../../store/actions/game';
+import Square from './Square/Square';
 import './Game.scss';
 import { gameFunction } from '../../game/gameFunction';
 import Players from '../Players/Players';
+import AddPlayer from '../TicTacToe/AddPlayer/AddPlayer';
 
 class Game extends Component {
     constructor (props) {
@@ -21,16 +23,44 @@ class Game extends Component {
     }
 
     handleSquareClick = (id) => {
+        if(!this.props.gameCompleted) {
         let square = [...this.props.squares]
         let game = gameFunction(id, square, this.props.playerTurn, this.props.players, 
             this.props.selectedPlayerX, this.props.selectedPlayer0);
+        if(this.props.selectedPlayerX !== '' && this.props.selectedPlayer0 !== '' 
+        && this.props.selectedPlayerX !== this.props.selectedPlayer0) {    
         this.props.onAddSymbol(game.squares);
         this.props.onSwitchTurn(game.turn);
         this.props.onAddScore(game.winner);
-        console.log(game.completed);
+        this.props.onSetGameCompleted(game.completed);
+        }
+    }
+    }
+
+    handlePlayerNameInput = (text) => {
+        this.props.onAddPlayerName(text);
+    } 
+
+    addPlayer = () => {
+       let newPlayer = {
+        id: this.props.players.length,
+        name: this.props.newPlayer,
+        wins: 0,
+        loses: 0,
+        score: 0,
+        selected: '',
+       }
+       this.props.onAddPlayer(newPlayer); 
+       console.log(this.props.players);
     }
    
   render() {
+
+    let gameCompleted;
+
+    if(this.props.gameCompleted) {
+        gameCompleted = <div onClick={() => this.props.onResetGame()}>Game Completed! Reset the game?</div>
+    }
 
     return (
             <React.Fragment>
@@ -38,7 +68,11 @@ class Game extends Component {
             <div className="game-container">
             <Players className="player-container-x" symbol="X" />
             <div className="squares-wrap">
-            <div>Add a new player</div>
+            <AddPlayer 
+            newPlayerName={this.props.newPlayer.name}
+            handlePlayerNameInput={this.handlePlayerNameInput}
+            addPlayer={this.addPlayer}
+            />
             <div className="squares-container">
             {this.props.squares.map(square => {
                             return <Square 
@@ -51,6 +85,7 @@ class Game extends Component {
             </div>
             <Players className="player-container-0" symbol="0" />
             </div>
+            {gameCompleted}
             </React.Fragment>
     );
 }
@@ -64,15 +99,19 @@ const mapStateToProps = state => {
         players: state.game.players,
         selectedPlayerX: state.game.selectedPlayerX,
         selectedPlayer0: state.game.selectedPlayer0,
+        newPlayer: state.game.newPlayer,
     };
 };
 
 const mapDispatchToProps = dispatch => {
     return {
-        onSetGameCompleted: () => dispatch(setGameCompleted()),
+        onSetGameCompleted: (completed) => dispatch(setGameCompleted(completed)),
         onAddSymbol: (symbol) => dispatch(addSymbol(symbol)),
         onSwitchTurn: (playerTurn) => dispatch(switchTurn(playerTurn)),
         onAddScore: (score) => dispatch(addScore(score)),
+        onResetGame: () => dispatch(resetGame()),
+        onAddPlayerName: (name) => dispatch(addPlayerName(name)),
+        onAddPlayer: (player) => dispatch(addPlayer(player)),
     };
 };
 

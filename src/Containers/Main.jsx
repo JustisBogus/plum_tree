@@ -17,7 +17,6 @@ class Main extends Component {
             <React.Fragment>
                 <Route path="/" exact component={Game} />  
                 <Route path="/score" component={Score} />
-        <div>Main Container</div>
             </React.Fragment>
     );
 }

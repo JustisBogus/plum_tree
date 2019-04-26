@@ -1,6 +1,10 @@
 export const SET_GAME_COMPLETED = 'SET_GAME_COMPLETED';
+export const RESET_GAME = 'RESET_GAME';
 export const ADD_SYMBOL = 'ADD_SYMBOL';
 export const SWITCH_TURN = 'SWITCH_TURN';
 export const SELECT_PLAYER_X = 'SELECT_PLAYER_X';
 export const SELECT_PLAYER_0 = 'SELECT_PLAYER_0';
 export const ADD_SCORE = 'ADD_SCORE';
+export const ADD_PLAYER_NAME = 'ADD_PLAYER_NAME';
+export const ADD_PLAYER = 'ADD_PLAYER';
+export const PLAYER_SEARCH = 'PLAYER_SEARCH';

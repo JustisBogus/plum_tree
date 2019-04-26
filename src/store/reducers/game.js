@@ -1,14 +1,17 @@
 import { SET_GAME_COMPLETED, ADD_SYMBOL, SWITCH_TURN, SELECT_PLAYER_X, 
-    SELECT_PLAYER_0, ADD_SCORE } from '../actions/actionTypes';
+    SELECT_PLAYER_0, ADD_SCORE, RESET_GAME, ADD_PLAYER_NAME, ADD_PLAYER, PLAYER_SEARCH } from '../actions/actionTypes';
 import initialSquareData from './initialSquareData';
 import initialPlayerData from './initialPlayerData';
 
 const initialState = {
+    gameCompleted: false,
     squares: initialSquareData,
     players: initialPlayerData,
     selectedPlayerX: '',
     selectedPlayer0: '',
     playerTurn: 'X',
+    newPlayer: '',
+    playerSearch: '',
 };
 
 const reducer = (state = initialState, action) => {
@@ -16,7 +19,13 @@ const reducer = (state = initialState, action) => {
         case SET_GAME_COMPLETED:
             return {
                 ...state,
-                gameCompleted: true,
+                gameCompleted: action.completed,
+            };
+            case RESET_GAME:
+            return {
+                ...state,
+                gameCompleted: false,
+                squares: initialSquareData,
             };
             case ADD_SYMBOL:
             return {
@@ -33,17 +42,35 @@ const reducer = (state = initialState, action) => {
                 ...state,
                 players: action.player,
                 selectedPlayerX: action.id,
+                squares: initialSquareData,
             };
             case SELECT_PLAYER_0:
             return {
                 ...state,
                 players: action.player,
                 selectedPlayer0: action.id,
+                squares: initialSquareData,
             };
             case ADD_SCORE:
             return {
                 ...state,
                 players: action.score,
+            };
+            case ADD_PLAYER_NAME:
+            return {
+                ...state,
+                newPlayer: action.name,
+            };
+            case ADD_PLAYER:
+            return {
+                ...state,
+                //players: [action.player].concat(state.players),
+                players: state.players.concat(action.player),
+            };
+            case PLAYER_SEARCH:
+            return {
+                ...state,
+                playerSearch: action.search,
             };
         default:
             return state;
