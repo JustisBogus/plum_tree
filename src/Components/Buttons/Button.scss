@@ -1,5 +1,7 @@
 $shadow : 0 5px 10px 0px rgba(0, 0, 0, 0.1);
 $shadowSmall : 0 1px 1px 0px rgba(0, 0, 0, 0.1);
+$green: #aaf0d1;
+$white: #fff;
 
 .button-wrap {
   margin:auto;
@@ -9,26 +11,18 @@ $shadowSmall : 0 1px 1px 0px rgba(0, 0, 0, 0.1);
 .button {
   display:block;
   height: 35px;
-  background-color: #fff;
+  background-color: white;
   margin:0px 20px 20px 20px;
   padding:5px;
   line-height:35px;
   text-align: center;
-  border: 1px solid #aaf0d1;
+  border: 1px solid $green;
   border-radius:5px;
   font-size:24px;
   font-weight:100;
   cursor:pointer;
   box-shadow: $shadow;
-  -moz-box-shadow: $shadow;
-  -webkit-box-shadow: $shadow;
-  -o-box-shadow: $shadow;
-  -ms-box-shadow: $shadow;
   &:hover {
     box-shadow: $shadowSmall;
-    -moz-box-shadow: $shadowSmall;
-    -webkit-box-shadow: $shadowSmall;
-    -o-box-shadow: $shadowSmall;
-    -ms-box-shadow: $shadowSmall;
-    }
+  }
 }

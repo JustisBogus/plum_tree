@@ -13,20 +13,20 @@ class Main extends Component {
   render() {
 
     return (
-        <div>
+        <header data-test="header-component">
         <div>
             <NavLink to="/" exact
-            activeClassName="active">
+            data-test="header-navLink" activeClassName="active">
             switch to game
             </NavLink>
         </div>
         <div>
             <NavLink to="/score" exact
-            activeClassName="active">
+            data-test="header-navLink" activeClassName="active">
             switch to score
             </NavLink>
         </div>
-        </div>
+        </header>
     );
 }
 }

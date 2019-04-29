@@ -1,4 +1,9 @@
 $blue :#50bfe6;
+$white: #fff;
+
+.header-component {
+    background-color: $white;
+}
 
 .active {
     color: $blue;

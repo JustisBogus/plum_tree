@@ -16,7 +16,7 @@ class Game extends Component {
         super(props);
         
         this.state = {    
-            players: '',
+            
         }
       }
       

@@ -5,7 +5,7 @@ import { SET_GAME_COMPLETED, ADD_SYMBOL, SWITCH_TURN, SELECT_PLAYER_X,
 export const setGameCompleted = (completed) => {
     return {
         type: SET_GAME_COMPLETED,
-        completed: completed,
+        completed,
     };
 };
 
@@ -18,14 +18,14 @@ export const resetGame = () => {
 export const addSymbol = (symbol) => {
     return {
         type: ADD_SYMBOL,
-        symbol: symbol,
+        symbol,
     };
 };
 
 export const switchTurn = (playerTurn) => {
     return {
         type: SWITCH_TURN,
-        playerTurn: playerTurn,
+        playerTurn,
     };
 };
 
@@ -33,7 +33,7 @@ export const selectPlayerX = (player, id) => {
     return {
         type: SELECT_PLAYER_X,
         player: player,
-        id: id,
+        id,
     };
 };
 
@@ -41,43 +41,43 @@ export const selectPlayer0 = (player, id) => {
     return {
         type: SELECT_PLAYER_0,
         player: player,
-        id: id,
+        id,
     };
 };
 
 export const addScore = (score) => {
     return {
         type: ADD_SCORE,
-        score: score,
+        score,
     };
 };
 
 export const addPlayerName = (name) => {
     return {
         type: ADD_PLAYER_NAME,
-        name: name,
+        name,
     };
 };
 
 export const addPlayer = (player) => {
     return {
         type: ADD_PLAYER,
-        player: player,
+        player,
     };
 };
 
 export const playerSearch = (search) => {
     return {
         type: PLAYER_SEARCH,
-        search: search,
+        search,
     };
 };
 
 export const addStorage = (storage, playerX, player0) => {
     return {
         type: ADD_STORAGE,
-        storage: storage,
-        playerX: playerX,
-        player0: player0,
+        storage,
+        playerX,
+        player0,
     };
 };

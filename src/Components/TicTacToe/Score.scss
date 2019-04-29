@@ -1,6 +1,8 @@
+$light_grey: #f2f2f2; 
+
 .score-container {
     margin: 20px auto 20px auto;
     padding: 20px 0 20px 0;
-    border-top:1px solid #f2f2f2;
-    border-bottom:1px solid #f2f2f2;
+    border-top:1px solid $light_grey;
+    border-bottom:1px solid $light_grey;
 }
