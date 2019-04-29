@@ -10,23 +10,23 @@ import { gameFunction } from '../../game/gameFunction';
 import Players from '../Players/Players';
 import Input from '../Inputs/Input';
 import Button from '../Buttons/Button';
+import PropTypes from 'prop-types';
 
 class Game extends Component {
-    constructor (props) {
-        super(props);
-        
+    constructor(props) {
+        super(props);       
         this.state = {    
-            
-        }
-      }
-      
+
+        };
+    }
+
     componentWillMount() {
         localStorage.getItem('players', 'selectedPlayerX', 'selectedPlayer0');
-        let storage = JSON.parse(localStorage.getItem('players'));
-        let selectedPlayerX = localStorage.getItem('selectedPlayerX');
-        let selectedPlayer0 = localStorage.getItem('selectedPlayer0');
-        if(storage !== null) {
-        this.props.onAddStorage(storage, selectedPlayerX, selectedPlayer0 );
+        const storage = JSON.parse(localStorage.getItem('players'));
+        const selectedPlayerX = localStorage.getItem('selectedPlayerX');
+        const selectedPlayer0 = localStorage.getItem('selectedPlayer0');
+        if (storage !== null) {
+            this.props.onAddStorage(storage, selectedPlayerX, selectedPlayer0);
         }
     }
 
@@ -34,7 +34,7 @@ class Game extends Component {
         localStorage.setItem('players', JSON.stringify(nextProps.players));
         localStorage.setItem('selectedPlayerX', nextProps.selectedPlayerX);
         localStorage.setItem('selectedPlayer0', nextProps.selectedPlayer0);
-    }      
+    }
 
     onGameCompleted = () => {
         this.props.onSetGameCompleted();
@@ -42,17 +42,17 @@ class Game extends Component {
 
     handleSquareClick = (id) => {
         if(!this.props.gameCompleted) {
-        let square = [...this.props.squares]
-        let game = gameFunction(id, square, this.props.playerTurn, this.props.players, 
-            this.props.selectedPlayerX, this.props.selectedPlayer0);
-        if(this.props.selectedPlayerX !== '' && this.props.selectedPlayer0 !== '' 
+            const square = [...this.props.squares]
+            const game = gameFunction(id, square, this.props.playerTurn, this.props.players, 
+                this.props.selectedPlayerX, this.props.selectedPlayer0);
+            if(this.props.selectedPlayerX !== '' && this.props.selectedPlayer0 !== '' 
         && this.props.selectedPlayerX !== this.props.selectedPlayer0) {    
-        this.props.onAddSymbol(game.squares);
-        this.props.onSwitchTurn(game.turn);
-        this.props.onAddScore(game.winner);
-        this.props.onSetGameCompleted(game.completed);
+                this.props.onAddSymbol(game.squares);
+                this.props.onSwitchTurn(game.turn);
+                this.props.onAddScore(game.winner);
+                this.props.onSetGameCompleted(game.completed);
+            }
         }
-    }
     }
 
     handlePlayerNameInput = (text) => {
@@ -60,72 +60,73 @@ class Game extends Component {
     } 
 
     addPlayer = () => {
-       let newPlayer = {
-        id: this.props.players.length,
-        name: this.props.newPlayer,
-        wins: 0,
-        loses: 0,
-        score: 0,
-        selected: '',
-       }
-       this.props.onAddPlayer(newPlayer); 
+        const newPlayer = {
+            id: this.props.players.length,
+            name: this.props.newPlayer,
+            wins: 0,
+            loses: 0,
+            score: 0,
+            selected: '',
+        };
+        this.props.onAddPlayer(newPlayer);
     }
 
     handlePlayerSearchInput = (text) => {
         this.props.onPlayerSearch(text);
     }
    
-  render() {
+    render() {
 
-    let gameCompleted;
+        let gameCompleted;
 
-    if(this.props.gameCompleted) {
-        gameCompleted = <Button 
-        title="Game Completed! Reset the game?"
-        onClick={() => this.props.onResetGame()}/>
-    }
+        if(this.props.gameCompleted) {
+            gameCompleted = (<Button 
+                title="Game Completed! Reset the game?"
+                onClick={() => this.props.onResetGame()}/>
+            )}
 
-    return (
+        return (
             <React.Fragment>
-            <Header />
-            <div className="game-container">
-            <div className="game-playerContainer">
-            <Players  symbol="X" />
-            </div>
-            <div className="game-squaresWrap">
-            <div className="squares-container">
-            {this.props.squares.map(square => {
-                            return <Square 
+                <Header />
+                <div data-test="game-component"
+                    className="game-container">
+                    <div className="game-playerContainer">
+                        <Players  symbol="X" />
+                    </div>
+                    <div className="game-squaresWrap">
+                        <div className="squares-container">
+                            {this.props.squares.map(square => {
+                                return (<Square 
                                 key={square.id}
                                 symbol={square.symbol}
                                 id={square.id}
                                 handleClick={this.handleSquareClick}/>
-                            })}
-            </div>
-            <div className="game-addPlayer">
-            <Input 
-            placeholder="Add new player"
-            value={this.props.newPlayer}
-            handleInput={this.handlePlayerNameInput}
-            />
-            </div>
-            <Button 
-            title="Add"
-            onClick={() => this.addPlayer()} />
-            <Input 
-            placeholder="Search for player"
-            value={this.props.playerSearch}
-            handleInput={this.handlePlayerSearchInput}
-            />
-            </div>
-            <div className="game-playerContainer">
-            <Players symbol="0" />
-            </div>
-            </div>
-            {gameCompleted}
+                                )})}
+                        </div>
+                        <div className="game-addPlayer">
+                            <Input 
+                                placeholder="Add new player"
+                                value={this.props.newPlayer}
+                                handleInput={this.handlePlayerNameInput}
+                            />
+                        </div>
+                        <Button 
+                            title="Add"
+                            onClick={() => this.addPlayer()} />
+                        <Input 
+                            placeholder="Search for player"
+                            value={this.props.playerSearch}
+                            handleInput={this.handlePlayerSearchInput}
+                        />
+                    </div>
+                    <div className="game-playerContainer">
+                        <Players symbol="0" />
+                    </div>
+                </div>
+                {gameCompleted}
             </React.Fragment>
-    );
-}
+        );
+    }
 }
 
 const mapStateToProps = state => {
@@ -153,6 +154,27 @@ const mapDispatchToProps = dispatch => {
         onPlayerSearch: (search) => dispatch(playerSearch(search)),
         onAddStorage: (storage, playerX, player0) => dispatch(addStorage(storage, playerX, player0)),
     };
+};
+
+Game.propTypes = {
+    gameCompleted: PropTypes.bool,
+    squares: PropTypes.arrayOf(PropTypes.shape({
+        id: PropTypes.number,
+        symbol: PropTypes.string,
+    })),
+    playerTurn: PropTypes.string,
+    players: PropTypes.arrayOf(PropTypes.shape({
+        id: PropTypes.number,
+        name: PropTypes.string,
+        wins: PropTypes.number,
+        loses: PropTypes.number,
+        score: PropTypes.number,
+        selected: PropTypes.string,
+    })),
+    selectedPlayerX: PropTypes.string,
+    selectedPlayer0: PropTypes.string,
+    newPlayer: PropTypes.string,
+    playerSearch: PropTypes.string,
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(Game);

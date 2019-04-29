@@ -4,22 +4,22 @@ import Game from '../Components/TicTacToe/Game';
 import Score from '../Components/TicTacToe/Score';
 
 class Main extends Component {
-    constructor (props) {
+    constructor(props) {
         super(props);
         
-        this.state = {    
-        }
-      }
+        this.state = {
+        };
+    }
    
-  render() {
+    render() {
 
-    return (
+        return (
             <React.Fragment>
                 <Route path="/" exact component={Game} />  
                 <Route path="/score" component={Score} />
             </React.Fragment>
-    );
-}
+        );
+    }
 }
 
 export default Main;

@@ -9,7 +9,7 @@ import configureStore from './store/configureStore';
 
 const store = configureStore();
 
-const Redux = (
+export const Redux = (
     <Provider store={store}>
         <App />
     </Provider>

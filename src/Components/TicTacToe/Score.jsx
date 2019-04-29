@@ -6,34 +6,34 @@ import { selectPlayerX, selectPlayer0 } from '../../store/actions/game';
 import './Score.scss';
 
 class Score extends Component {
-    constructor (props) {
+    constructor(props) {
         super(props);
         
         this.state = {    
-        }
-      }    
+        };
+    }
 
-  render() {
+    render() {
 
-    return (
+        return (
             <React.Fragment>
-            <Header />
-        <div>Score</div>
-        <div className="score-container">
-        {this.props.players.sort((a,b)=>a.score < b.score).map(player => {
-                            return <PlayerScore 
-                                key={player.id}
-                                id={player.id}
-                                name={player.name}
-                                score={player.score}
-                                wins={player.wins}
-                                loses={player.loses}
-                                />
-                            })}
-        </div>
+                <Header />
+                <div>Score</div>
+                <div className="score-container">
+                    {this.props.players.sort((a,b)=>a.score < b.score).map(player => {
+                        return (<PlayerScore 
+                            key={player.id}
+                            id={player.id}
+                            name={player.name}
+                            score={player.score}
+                            wins={player.wins}
+                            loses={player.loses}
+                        />
+                    )})}
+                </div>
             </React.Fragment>
-    );
-}
+        );
+    }
 }
 
 const mapStateToProps = state => {

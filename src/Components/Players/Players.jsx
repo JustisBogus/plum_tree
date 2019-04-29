@@ -5,61 +5,60 @@ import { selectPlayerX, selectPlayer0} from '../../store/actions/game';
 import './Players.scss';
 
 class Players extends Component {
-    constructor (props) {
+    constructor(props) {
         super(props);
         
-        this.state = {    
-        }
-      }
+        this.state = {
+        };
+    }
 
 togglePlayerSelectedX = (id) => {
-    let selectedPlayer = this.props.selectedPlayerX;
-    let players = [...this.props.players];
-    let deselectPlayer = {...players[selectedPlayer]};
+    const selectedPlayer = this.props.selectedPlayerX;
+    const players = [...this.props.players];
+    const deselectPlayer = { ...players[selectedPlayer] };
     deselectPlayer.selected = '';
     players[selectedPlayer] = deselectPlayer;
-    let player = {...players[id]};
+    const player = {...players[id]};
     player.selected = 'X';
     players[id] = player;
     this.props.onSelectPlayerX(players, id);
 }
 
 togglePlayerSelected0 = (id) => {
-    let selectedPlayer = this.props.selectedPlayer0;
-    let players = [...this.props.players];
-    let deselectPlayer = {...players[selectedPlayer]};
+    const selectedPlayer = this.props.selectedPlayer0;
+    const players = [...this.props.players];
+    const deselectPlayer = { ...players[selectedPlayer] };
     deselectPlayer.selected = '';
     players[selectedPlayer] = deselectPlayer;
-    let player = {...players[id]};
+    const player = { ...players[id] };
     player.selected = '0';
     players[id] = player;
     this.props.onSelectPlayer0(players, id);
 }
   
-  render() {
-
-    let filteredPlayers = this.props.players.filter(
+render() {
+    const filteredPlayers = this.props.players.filter(
         (players) => {
-                return  players.name.toLowerCase().indexOf(this.props.playerSearch.toLowerCase()) !== -1;
-        }
-    )
+            return players.name.toLowerCase().indexOf(this.props.playerSearch.toLowerCase()) !== -1;
+        },
+    );
 
     return (
-            <React.Fragment>
-        <div className="players-wrap">
-        <div className="players-title">{this.props.symbol} player</div>
-        {filteredPlayers.map(player => {
-                            return <Player 
-                                key={player.id}
-                                id={player.id}
-                                name={player.name}
-                                selected={player.selected}
-                                playerSelectedX={this.togglePlayerSelectedX}
-                                playerSelected0={this.togglePlayerSelected0}
-                                symbol={this.props.symbol}
-                                 />
-                            })}
-        </div>
+        <React.Fragment>
+            <div className="players-wrap">
+                <div className="players-title">{this.props.symbol} player</div>
+                {filteredPlayers.map(player => {
+                    return (<Player 
+                        key={player.id}
+                        id={player.id}
+                        name={player.name}
+                        selected={player.selected}
+                        playerSelectedX={this.togglePlayerSelectedX}
+                        playerSelected0={this.togglePlayerSelected0}
+                        symbol={this.props.symbol}
+                    />
+                    )})}
+            </div>
         </React.Fragment>
     );
 }
