@@ -11,8 +11,8 @@ class Score extends Component {
         
         this.state = {    
         }
-      }
-   
+      }    
+
   render() {
 
     return (

@@ -1,5 +1,6 @@
 import { SET_GAME_COMPLETED, ADD_SYMBOL, SWITCH_TURN, SELECT_PLAYER_X, 
-    SELECT_PLAYER_0, ADD_SCORE, RESET_GAME, ADD_PLAYER_NAME, ADD_PLAYER, PLAYER_SEARCH } from '../actions/actionTypes';
+    SELECT_PLAYER_0, ADD_SCORE, RESET_GAME, ADD_PLAYER_NAME, 
+    ADD_PLAYER, PLAYER_SEARCH, ADD_STORAGE } from '../actions/actionTypes';
 import initialSquareData from './initialSquareData';
 import initialPlayerData from './initialPlayerData';
 
@@ -72,6 +73,13 @@ const reducer = (state = initialState, action) => {
                 ...state,
                 playerSearch: action.search,
             };
+            case ADD_STORAGE:
+            return {
+                ...state,
+                players: action.storage,
+                selectedPlayerX: action.playerX,
+                selectedPlayer0: action.player0,
+            }
         default:
             return state;
     }

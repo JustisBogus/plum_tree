@@ -21,9 +21,7 @@ togglePlayerSelectedX = (id) => {
     let player = {...players[id]};
     player.selected = 'X';
     players[id] = player;
-    console.log(this.props.players[id]);
     this.props.onSelectPlayerX(players, id);
-
 }
 
 togglePlayerSelected0 = (id) => {

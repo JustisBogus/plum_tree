@@ -1,5 +1,6 @@
 import { SET_GAME_COMPLETED, ADD_SYMBOL, SWITCH_TURN, SELECT_PLAYER_X, 
-    SELECT_PLAYER_0, ADD_SCORE, RESET_GAME, ADD_PLAYER_NAME, ADD_PLAYER, PLAYER_SEARCH } from './actionTypes';
+    SELECT_PLAYER_0, ADD_SCORE, RESET_GAME, ADD_PLAYER_NAME, ADD_PLAYER, 
+    PLAYER_SEARCH, ADD_STORAGE } from './actionTypes';
 
 export const setGameCompleted = (completed) => {
     return {
@@ -69,5 +70,14 @@ export const playerSearch = (search) => {
     return {
         type: PLAYER_SEARCH,
         search: search,
+    };
+};
+
+export const addStorage = (storage, playerX, player0) => {
+    return {
+        type: ADD_STORAGE,
+        storage: storage,
+        playerX: playerX,
+        player0: player0,
     };
 };

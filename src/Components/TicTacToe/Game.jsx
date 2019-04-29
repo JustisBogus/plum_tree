@@ -2,7 +2,8 @@ import React, { Component } from 'react';
 import Header from '../Header';
 import { connect } from 'react-redux';
 import { setGameCompleted, addSymbol, switchTurn, 
-    addScore, resetGame, addPlayerName, addPlayer, playerSearch } from '../../store/actions/game';
+    addScore, resetGame, addPlayerName, 
+    addPlayer, playerSearch, addStorage } from '../../store/actions/game';
 import Square from './Square/Square';
 import './Game.scss';
 import { gameFunction } from '../../game/gameFunction';
@@ -15,9 +16,25 @@ class Game extends Component {
         super(props);
         
         this.state = {    
-    
+            players: '',
         }
       }
+      
+    componentWillMount() {
+        localStorage.getItem('players', 'selectedPlayerX', 'selectedPlayer0');
+        let storage = JSON.parse(localStorage.getItem('players'));
+        let selectedPlayerX = localStorage.getItem('selectedPlayerX');
+        let selectedPlayer0 = localStorage.getItem('selectedPlayer0');
+        if(storage !== null) {
+        this.props.onAddStorage(storage, selectedPlayerX, selectedPlayer0 );
+        }
+    }
+
+    componentWillUpdate(nextProps, nextState) {
+        localStorage.setItem('players', JSON.stringify(nextProps.players));
+        localStorage.setItem('selectedPlayerX', nextProps.selectedPlayerX);
+        localStorage.setItem('selectedPlayer0', nextProps.selectedPlayer0);
+    }      
 
     onGameCompleted = () => {
         this.props.onSetGameCompleted();
@@ -52,7 +69,6 @@ class Game extends Component {
         selected: '',
        }
        this.props.onAddPlayer(newPlayer); 
-       console.log(this.props.players);
     }
 
     handlePlayerSearchInput = (text) => {
@@ -73,21 +89,10 @@ class Game extends Component {
             <React.Fragment>
             <Header />
             <div className="game-container">
-            <Players className="game-playerContainer" symbol="X" />
-            <div className="squares-wrap">
-            <Input 
-            placeholder="Add new player"
-            value={this.props.newPlayer}
-            handleInput={this.handlePlayerNameInput}
-            />
-            <Button 
-            title="Add"
-            onClick={() => this.addPlayer()} />
-            <Input 
-            placeholder="Search for player"
-            value={this.props.playerSearch}
-            handleInput={this.handlePlayerSearchInput}
-            />
+            <div className="game-playerContainer">
+            <Players  symbol="X" />
+            </div>
+            <div className="game-squaresWrap">
             <div className="squares-container">
             {this.props.squares.map(square => {
                             return <Square 
@@ -97,8 +102,25 @@ class Game extends Component {
                                 handleClick={this.handleSquareClick}/>
                             })}
             </div>
+            <div className="game-addPlayer">
+            <Input 
+            placeholder="Add new player"
+            value={this.props.newPlayer}
+            handleInput={this.handlePlayerNameInput}
+            />
             </div>
-            <Players className="game-playerContainer" symbol="0" />
+            <Button 
+            title="Add"
+            onClick={() => this.addPlayer()} />
+            <Input 
+            placeholder="Search for player"
+            value={this.props.playerSearch}
+            handleInput={this.handlePlayerSearchInput}
+            />
+            </div>
+            <div className="game-playerContainer">
+            <Players symbol="0" />
+            </div>
             </div>
             {gameCompleted}
             </React.Fragment>
@@ -129,6 +151,7 @@ const mapDispatchToProps = dispatch => {
         onAddPlayerName: (name) => dispatch(addPlayerName(name)),
         onAddPlayer: (player) => dispatch(addPlayer(player)),
         onPlayerSearch: (search) => dispatch(playerSearch(search)),
+        onAddStorage: (storage, playerX, player0) => dispatch(addStorage(storage, playerX, player0)),
     };
 };
 

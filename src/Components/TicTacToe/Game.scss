@@ -6,21 +6,24 @@
     overflow: auto;
 }
 
-.squares-wrap {
+.game-squaresWrap {
     width: 31%;
     min-width: 400px;
-    border-right: 2px solid #50bfe6;
-    overflow-y: scroll
+    overflow-y: scroll;
 }
 
 .squares-container {
-    display : inline-flex;
+    margin-top:20px;
+    display: inline-flex;
     flex-wrap: wrap;
-    width: 310px
+    width: 310px;
 }
 
 .game-playerContainer {
     width: 27%;
-    border-right: 2px solid #50bfe6;
-    overflow-y: scroll
+    overflow-y: scroll;
+}
+
+.game-addPlayer {
+  margin-top:20px;
 }

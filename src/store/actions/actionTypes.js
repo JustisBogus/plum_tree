@@ -8,3 +8,4 @@ export const ADD_SCORE = 'ADD_SCORE';
 export const ADD_PLAYER_NAME = 'ADD_PLAYER_NAME';
 export const ADD_PLAYER = 'ADD_PLAYER';
 export const PLAYER_SEARCH = 'PLAYER_SEARCH';
+export const ADD_STORAGE = 'ADD_STORAGE';

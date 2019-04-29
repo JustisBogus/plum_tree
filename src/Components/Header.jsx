@@ -15,9 +15,6 @@ class Main extends Component {
     return (
         <div>
         <div>
-            Header
-        </div>
-        <div>
             <NavLink to="/" exact
             activeClassName="active">
             switch to game
