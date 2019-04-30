@@ -9,7 +9,8 @@ const Button = (props) => {
                 {props.title} 
             </div>
         </div>
-    )}
+    );
+};
 
 Button.propTypes = {
     title: PropTypes.string,

@@ -15,16 +15,18 @@ class Main extends Component {
         return (
             <header className="header-component" data-test="header-component">
                 <div className="header-links">
-                    <NavLink 
-                        to="/" exact  
+                    <NavLink
+                        to="/"
+                        exact
                         data-test="header-navLink" 
                         activeClassName="active">
                         switch to game
                     </NavLink>
                 </div>
                 <div className="header-links">
-                    <NavLink 
-                        to="/score" exact  
+                    <NavLink
+                        to="/score"
+                        exact
                         data-test="header-navLink" 
                         activeClassName="active">
                         switch to score

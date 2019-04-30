@@ -1,15 +1,15 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
 import Header from '../Header';
 import PlayerScore from './PlayerScore/playerScore';
-import { connect } from 'react-redux';
 import { selectPlayerX, selectPlayer0 } from '../../store/actions/game';
 import './Score.scss';
 
 class Score extends Component {
     constructor(props) {
         super(props);
-        
-        this.state = {    
+               
+        this.state = {
         };
     }
 

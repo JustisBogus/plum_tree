@@ -2,9 +2,12 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import Header from '../Header';
-import { setGameCompleted, addSymbol, switchTurn, 
+import {
+    setGameCompleted, addSymbol, switchTurn, 
     addScore, resetGame, addPlayerName, 
-    addPlayer, playerSearch, addStorage } from '../../store/actions/game';
+    addPlayer, playerSearch, addStorage, 
+}
+    from '../../store/actions/game';
 import Square from './Square/Square';
 import './Game.scss';
 import { gameFunction } from '../../game/gameFunction';
@@ -14,8 +17,8 @@ import Button from '../Buttons/Button';
 
 class Game extends Component {
     constructor(props) {
-        super(props);       
-        this.state = {    
+        super(props);
+        this.state = {
 
         };
     }
@@ -57,7 +60,7 @@ class Game extends Component {
 
     handlePlayerNameInput = (text) => {
         this.props.onAddPlayerName(text);
-    } 
+    }
 
     addPlayer = () => {
         const newPlayer = {
@@ -74,7 +77,7 @@ class Game extends Component {
     handlePlayerSearchInput = (text) => {
         this.props.onPlayerSearch(text);
     }
-   
+
     render() {
 
         let gameCompleted;
@@ -84,7 +87,8 @@ class Game extends Component {
                 <Button 
                     title="Game Completed! Reset the game?"
                     onClick={() => this.props.onResetGame()}/>
-            )};
+            );
+        }
 
         return (
             <React.Fragment>
