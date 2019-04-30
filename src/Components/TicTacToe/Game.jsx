@@ -94,6 +94,11 @@ class Game extends Component {
                         <Players  symbol="X" />
                     </div>
                     <div className="game-squaresWrap">
+                    <Input 
+                            placeholder="Search for player"
+                            value={this.props.playerSearch}
+                            handleInput={this.handlePlayerSearchInput}
+                        />
                         <div className="squares-container">
                             {this.props.squares.map(square => {
                                 return (<Square 
@@ -113,11 +118,6 @@ class Game extends Component {
                         <Button 
                             title="Add"
                             onClick={() => this.addPlayer()} />
-                        <Input 
-                            placeholder="Search for player"
-                            value={this.props.playerSearch}
-                            handleInput={this.handlePlayerSearchInput}
-                        />
                     </div>
                     <div className="game-playerContainer">
                         <Players symbol="0" />

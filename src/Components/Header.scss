@@ -12,4 +12,7 @@ $white: #fff;
 .header-links {
     display: inline-block;
     margin: 20px 5% 20px 5%;
+    a {
+        text-decoration: none;
+    }
 }

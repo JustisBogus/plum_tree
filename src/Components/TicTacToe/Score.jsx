@@ -18,7 +18,9 @@ class Score extends Component {
         return (
             <React.Fragment>
                 <Header />
-                <div>Score</div>
+                <div className="score-title">
+                    Score
+                </div>
                 <div className="score-container">
                     {this.props.players.sort((a,b)=>a.score < b.score).map(player => {
                         return (<PlayerScore 
