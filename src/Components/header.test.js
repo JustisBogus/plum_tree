@@ -6,7 +6,7 @@ import { findByTestAtrribute } from '../../utilities/index.js';
 const setUp = (props={}) => {
     const component = shallow(<Header {...props} />);
     return component;
-}
+};
 
 describe('Header Component', () => {
 
@@ -16,12 +16,12 @@ describe('Header Component', () => {
     });
 
     it('Should render header component', () => {
-        const wrapper = findByTestAtrribute(component, "header-component");
+        const wrapper = findByTestAtrribute(component, 'header-component');
         expect(wrapper.length).toBe(1);
     });
 
     it('Should render two navLinks', () => {
-        const wrapper = findByTestAtrribute(component, "header-navLink");
+        const wrapper = findByTestAtrribute(component, 'header-navLink');
         expect(wrapper.length).toBe(2);
     });
 

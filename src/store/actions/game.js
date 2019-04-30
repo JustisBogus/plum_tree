@@ -32,7 +32,7 @@ export const switchTurn = (playerTurn) => {
 export const selectPlayerX = (player, id) => {
     return {
         type: SELECT_PLAYER_X,
-        player: player,
+        player,
         id,
     };
 };
@@ -40,7 +40,7 @@ export const selectPlayerX = (player, id) => {
 export const selectPlayer0 = (player, id) => {
     return {
         type: SELECT_PLAYER_0,
-        player: player,
+        player,
         id,
     };
 };

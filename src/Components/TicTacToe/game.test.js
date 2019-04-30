@@ -1,8 +1,8 @@
 import React from 'react';
 import { shallow } from 'enzyme';
+import configureStore from 'redux-mock-store';
 import Game from './Game';
 import checkPropTypes from 'check-prop-types';
-import configureStore from 'redux-mock-store';
 import { initialState } from '../../store/reducers/game'
 
 import { findByTestAtrribute } from '../../../utilities/index';
@@ -10,7 +10,7 @@ import { findByTestAtrribute } from '../../../utilities/index';
 const mockStore = configureStore();
 let store;
 
-const setUp = (initialState) => {
+const setUp = () => {
     store = mockStore(initialState)
     const component = shallow(<Game store={store} />);
     return component;
@@ -24,10 +24,9 @@ describe('Game Component', () => {
     });
 
     it('Should render game component', () => {
-        const wrapper = findByTestAtrribute(component, "game-component");
+        const wrapper = findByTestAtrribute(component, 'game-component');
         expect(wrapper.length).toBe(1);
     });
-
 });
 
 

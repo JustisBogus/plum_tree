@@ -35,9 +35,16 @@
     ]
   },
   "devDependencies": {
+    "babel-eslint": "^10.0.1",
     "check-prop-types": "^1.1.2",
     "enzyme": "^3.9.0",
     "enzyme-adapter-react-16": "^1.12.1",
+    "eslint": "^5.16.0",
+    "eslint-config-airbnb": "^17.1.0",
+    "eslint-plugin-import": "^2.17.2",
+    "eslint-plugin-jest": "^22.5.1",
+    "eslint-plugin-jsx-a11y": "^6.2.1",
+    "eslint-plugin-react": "^7.12.4",
     "jest": "^24.7.1",
     "jest-enzyme": "^7.0.2",
     "redux-mock-store": "^1.5.3",

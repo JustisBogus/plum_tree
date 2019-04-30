@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
-import Header from '../Header';
+import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
+import Header from '../Header';
 import { setGameCompleted, addSymbol, switchTurn, 
     addScore, resetGame, addPlayerName, 
     addPlayer, playerSearch, addStorage } from '../../store/actions/game';
@@ -10,7 +11,6 @@ import { gameFunction } from '../../game/gameFunction';
 import Players from '../Players/Players';
 import Input from '../Inputs/Input';
 import Button from '../Buttons/Button';
-import PropTypes from 'prop-types';
 
 class Game extends Component {
     constructor(props) {
@@ -41,11 +41,11 @@ class Game extends Component {
     }
 
     handleSquareClick = (id) => {
-        if(!this.props.gameCompleted) {
+        if (!this.props.gameCompleted) {
             const square = [...this.props.squares]
             const game = gameFunction(id, square, this.props.playerTurn, this.props.players, 
                 this.props.selectedPlayerX, this.props.selectedPlayer0);
-            if(this.props.selectedPlayerX !== '' && this.props.selectedPlayer0 !== '' 
+            if (this.props.selectedPlayerX !== '' && this.props.selectedPlayer0 !== '' 
         && this.props.selectedPlayerX !== this.props.selectedPlayer0) {    
                 this.props.onAddSymbol(game.squares);
                 this.props.onSwitchTurn(game.turn);
@@ -79,22 +79,24 @@ class Game extends Component {
 
         let gameCompleted;
 
-        if(this.props.gameCompleted) {
-            gameCompleted = (<Button 
-                title="Game Completed! Reset the game?"
-                onClick={() => this.props.onResetGame()}/>
-            )}
+        if (this.props.gameCompleted) {
+            gameCompleted = (
+                <Button 
+                    title="Game Completed! Reset the game?"
+                    onClick={() => this.props.onResetGame()}/>
+            )};
 
         return (
             <React.Fragment>
                 <Header />
-                <div data-test="game-component"
+                <div 
+                    data-test="game-component"
                     className="game-container">
                     <div className="game-playerContainer">
-                        <Players  symbol="X" />
+                        <Players symbol="X" />
                     </div>
                     <div className="game-squaresWrap">
-                    <Input 
+                        <Input 
                             placeholder="Search for player"
                             value={this.props.playerSearch}
                             handleInput={this.handlePlayerSearchInput}
@@ -102,10 +104,10 @@ class Game extends Component {
                         <div className="squares-container">
                             {this.props.squares.map(square => {
                                 return (<Square 
-                                key={square.id}
-                                symbol={square.symbol}
-                                id={square.id}
-                                handleClick={this.handleSquareClick}/>
+                                    key={square.id}
+                                    symbol={square.symbol}
+                                    id={square.id}
+                                    handleClick={this.handleSquareClick}/>
                                 )})}
                         </div>
                         <div className="game-addPlayer">
